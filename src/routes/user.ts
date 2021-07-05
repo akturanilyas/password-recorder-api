@@ -1,8 +1,6 @@
-import { loginUser, registerUser } from '../controllers/auth';
-
 module.exports = ([
   {
-    path: '/api/auth/register',
+    path: '/api/user/',
     method: 'post',
     handler: (req, res, next) => registerUser(req, res, next),
   },
