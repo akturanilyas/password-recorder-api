@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { MinLength } from 'class-validator';
 import { User } from './user';
 
 @Entity('passwords')
@@ -9,12 +10,21 @@ export class Password {
     @ManyToOne(() => User, (user) => user.passwords)
     user:User;
 
-    @Column()
+    @MinLength(6)
+    @Column({
+      nullable: false,
+    })
     name: string;
 
-    @Column()
+    @MinLength(6)
+    @Column({
+      nullable: false,
+    })
     password: string;
 
-    @Column()
+    @MinLength(6)
+    @Column({
+      nullable: false,
+    })
     description: string;
 }
