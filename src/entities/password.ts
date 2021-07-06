@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
 import { MinLength } from 'class-validator';
 import { User } from './user';
 
 @Entity('passwords')
-export class Password {
-    @PrimaryGeneratedColumn()
+export class Password extends BaseEntity {
+    @PrimaryGeneratedColumn('uuid')
     id: number;
 
     @MinLength(6)
