@@ -1,5 +1,6 @@
 import { Password } from '../entities/password';
 import { User } from '../entities/user';
+import * as PasswordDataAccess from '../data-accesses/password';
 import * as UserDataAccess from '../data-accesses/user';
 
 export const createPassword = async (passwordData, id) => {
@@ -8,8 +9,15 @@ export const createPassword = async (passwordData, id) => {
     const password :Password = { user, ...passwordData };
     const createdPassword:Password = Password.create(password);
     await Password.save(createdPassword);
-    //   await Password.save(password);
+    // TODO ADD: Handler
   } catch (e) {
     console.log(e);
   }
+};
+export const getUserPasswords = async (userId) => {
+  try {
+    const password: Password[] = await PasswordDataAccess.getUserPasswords(userId);
+    return password;
+    // TODO ADD: Handler
+  } catch (e) { console.log(e); }
 };
