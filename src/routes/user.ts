@@ -14,5 +14,4 @@ module.exports = ([
     middlewares: ['token-checker'],
     handler: (req, res, next) => getAllUsers(req, res, next),
   },
-
 ]);

@@ -5,6 +5,7 @@ import { User } from '../entities/user';
 export const getUser = async (userId) => {
   try {
     const queryUser:User = await UserDataAccess.getUserById(userId);
+
     // Deleted password from response data
     const { password, ...user } = queryUser;
     return user;
@@ -14,12 +15,14 @@ export const getUser = async (userId) => {
 };
 
 export const getAllUsers = async () => {
-  const queryUsers:User[] = await UserDataAccess.getAllUsers();
   const users = [];
+  const queryUsers:User[] = await UserDataAccess.getAllUsers();
+
   // Deleted each users password from response data
   queryUsers.forEach((queryUser) => {
     const { password, ...user } = queryUser;
     users.push(user);
   });
+
   return users;
 };

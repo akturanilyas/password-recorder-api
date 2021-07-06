@@ -7,9 +7,6 @@ export class Password {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, (user) => user.passwords)
-    user:User;
-
     @MinLength(6)
     @Column({
       nullable: false,
@@ -27,4 +24,7 @@ export class Password {
       nullable: false,
     })
     description: string;
+
+    @ManyToOne(() => User, (user) => user.passwords)
+    user:User;
 }
