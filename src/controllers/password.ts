@@ -1,4 +1,3 @@
-import { Password } from '../entities/password';
 import * as PasswordService from '../services/password';
 
 export const createPassword = async (req, res, next) => {
@@ -11,11 +10,22 @@ export const createPassword = async (req, res, next) => {
     next(e);
   }
 };
+
 export const getUserPasswords = async (req, res, next) => {
   try {
     const { userId } = req.params;
-    const passwords: Password[] = await PasswordService.getUserPasswords(userId);
+    const passwords = await PasswordService.getPasswords(userId);
     res.status(200).json({ passwords });
+  } catch (e) {
+    next(e);
+  }
+};
+
+export const deletePassword = async (req, res, next) => {
+  try {
+    const { passwordId } = req.params;
+    await PasswordService.deletePassword(passwordId);
+    res.status(202).json({ message: 'Password successfully deleted' });
   } catch (e) {
     next(e);
   }
