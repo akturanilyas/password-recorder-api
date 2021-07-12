@@ -1,4 +1,4 @@
-import { createPassword, deletePassword, getUserPasswords } from '../controllers/password';
+import { createPassword, deletePassword, editPassword, getUserPasswords } from '../controllers/password';
 
 module.exports = ([
   {
@@ -18,6 +18,12 @@ module.exports = ([
     method: 'delete',
     middlewares: ['token-checker'],
     handler: (req, res, next) => deletePassword(req, res, next),
+  },
+  {
+    path: '/api/users/:userId/password/:passwordId',
+    method: 'put',
+    middlewares: ['token-checker'],
+    handler: (req, res, next) => editPassword(req, res, next),
   },
 
 ]);

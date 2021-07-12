@@ -21,6 +21,16 @@ export const getUserPasswords = async (req, res, next) => {
   }
 };
 
+export const editPassword = async (req, res, next) => {
+  try {
+    const { params: { passwordId }, body: { password, description } } = req;
+    await PasswordService.editPassword(passwordId, password, description);
+    res.status(200).json({ message: 'Password successfully edited' });
+  } catch (e) {
+    next(e);
+  }
+};
+
 export const deletePassword = async (req, res, next) => {
   try {
     const { passwordId } = req.params;

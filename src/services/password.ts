@@ -19,8 +19,13 @@ export const createPassword = async (passwordData, id) => {
 export const getPasswords = async (userId) => {
   const password:Password = await PasswordDataAccess.getUserPasswords(userId);
   if (!password) throw httpError(404, 'User doesn\'t exist');
-
   return password;
+};
+
+export const editPassword = async (passwordId, newPassword, description) => {
+  const password:Password = await PasswordDataAccess.getPassword(passwordId);
+  const editedPassword = { ...password, password: newPassword, description };
+  await PasswordDataAccess.savePassword(editedPassword);
 };
 
 export const deletePassword = async (passwordId) => {

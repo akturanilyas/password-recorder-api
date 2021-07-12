@@ -6,4 +6,8 @@ export const getUserPasswords = async (userId) => {
   return user.passwords;
 };
 
-export const getPassword = async (passwordId) => { return await Password.findOne({ where: { id: passwordId }, relations: ['user'] }); };
+export const getPassword = async (passwordId) => {
+  return await Password.findOne({ where: { id: passwordId }, relations: ['user'] });
+};
+
+export const savePassword = async (password) => { await Password.save(password); };
