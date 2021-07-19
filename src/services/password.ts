@@ -22,9 +22,9 @@ export const getPasswords = async (userId) => {
   return password;
 };
 
-export const editPassword = async (passwordId, newPassword, description) => {
+export const editPassword = async (passwordId, name, newPassword, description) => {
   const password:Password = await PasswordDataAccess.getPassword(passwordId);
-  const editedPassword = { ...password, password: newPassword, description };
+  const editedPassword = { ...password, name, password: newPassword, description };
   await PasswordDataAccess.savePassword(editedPassword);
 };
 
